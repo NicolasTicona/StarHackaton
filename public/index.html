@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/home.css">
+    <title>Start Hackaton</title>
+
+  </head>
+  <body>
+
+      <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-auth.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-database.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-firestore.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-messaging.js"></script>
+      
+    <header>
+
+      <div class="brand">
+        <h1>StartHackaton</h1>
+      </div>
+
+      <div class="menu">
+        <button id="google">Inicia sesión con Google</button>
+        <button id="btnOut">Cerrar Sesion</button>
+      </div>
+
+    </header>
+
+    <main>
+
+      <section class="container">
+
+        <div class="cont-btnCrear">
+          <a href="CreateHackaton/formulario.html"  id="crearHackaton">Crea un nueva Hackaton</a>
+        </div>
+
+        <section class="hackatones" id="cont_hackatones">
+        </section>
+
+      </section>
+
+    </main>
+
+    <!-- ****************************CONFIG WEB****************************** -->
+    <!-- COPY HERE THE CODE -->
+    <!-- ****************************CONFIG WEB****************************** -->
+
+
+    </script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+
+        try {
+          let app = firebase.app();
+          let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
+          console.log(`Firebase SDK loaded with ${features.join(', ')}`)
+        } catch (e) {
+          console.error(e);
+          console.log('Error loading the Firebase SDK, check the console.')
+        }
+      });
+    </script>
+
+    <script>
+
+      var btnEntrar;
+      // Verificar si la sesion está Activa
+      // ====================================
+        firebase.auth().onAuthStateChanged(user => {
+          if(user){
+            console.log(`Logueado como: ${user.displayName}`)
+            GetDATABASE()
+            setTimeout( () => {
+              BtnFunction()
+            },1000 )
+          }else{
+            console.log(`No ha iniciado sesion`)
+          }
+        })
+      // ====================================
+
+        function GetDATABASE (){
+          var starCountRef = firebase.database().ref('hackatones')
+          let listDb = new Array()
+
+          starCountRef.on('value', (snap) => {
+
+            snap.forEach( (hackaton) => {
+              let key = hackaton.key
+              Paint(hackaton.val(), key)
+            })
+          })
+
+
+        }
+
+        function Paint(hackaton, key){
+          let HACKATON = document.createElement('div')
+          HACKATON.setAttribute('class','hackaton')
+          HACKATON.setAttribute('href', key)
+
+          let HACKATON_TITLE = document.createElement('h2')
+          HACKATON_TITLE.setAttribute('class','title')
+          HACKATON_TITLE.textContent = hackaton.nombre
+
+          let HACKATON_DESCRIPTION = document.createElement('p')
+          HACKATON_DESCRIPTION.setAttribute('class', 'description')
+          HACKATON_DESCRIPTION.textContent = hackaton.descripcion
+
+          let BUTTON = document.createElement('button')
+          BUTTON.setAttribute('class', 'entrar')
+          BUTTON.setAttribute('id', 'entrarHackaton')
+          BUTTON.textContent = 'ENTRAR'
+
+          HACKATON.appendChild(HACKATON_TITLE)
+          HACKATON.appendChild(HACKATON_DESCRIPTION)
+          HACKATON.appendChild(BUTTON)
+
+          document.getElementById('cont_hackatones').appendChild(HACKATON)
+
+          btnEntrar = document.querySelectorAll('.entrar')
+        }
+
+      // ====================================
+
+      // Añadir nuevo miembro
+      // ====================================
+
+      function BtnFunction(){
+        btnEntrar.forEach( (btn) => {
+          btn.addEventListener('click', (e) => {
+              let hackaton = btn.parentNode
+              let key = hackaton.getAttribute('href')
+              let data;
+
+              let DataHackaton = firebase.database().ref(`hackatones/${key}`)
+              DataHackaton.on('value', (snap) => {
+                data = snap.val()
+              })
+              
+              render(data) 
+          })
+        })
+      }
+
+      // ====================================
+
+      //Iniciar Sesion con Google
+      // ===============================================
+      var providerBtn = document.getElementById('google')
+
+      providerBtn.addEventListener('click', (e) => {
+          e.preventDefault()
+
+          var provider = new firebase.auth.GoogleAuthProvider()
+          firebase.auth().signInWithRedirect(provider)
+
+      })
+      // ===============================================
+
+      // Boton para CerrarSesion
+      // ===============================================
+      var btnCerrar = document.getElementById('btnOut')
+      btnCerrar.addEventListener('click', (e) => {
+          CerrarSesion()
+      })
+
+      function CerrarSesion(){
+          firebase.auth().signOut()
+          .then( () => alert('Sesion cerrada'))
+          .catch( err => console.log(err))
+      }
+      // ===============================================
+
+
+    </script>
+    <script src="hackatones/hackatones.js"></script>
+
+  </body>
+</html>

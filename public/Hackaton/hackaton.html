@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hackaton</title>
+</head>
+<body>
+
+    <header id="header">
+        <h1 id="nombre"></h1>
+        <p id="admin"></p>
+    </header>
+
+    <section id="body">
+        <div id="cont-descripcion">
+            <p id="descripcion"></p>
+        </div>
+
+        <div id="cont-miembros">
+            <p id="miembro"></p>
+        </div>
+    </section>
+
+    <!-- SCRIPTS -->
+    
+
+    <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
+    <script>
+
+    </script>
+    
+    <script>
+            document.addEventListener('DOMContentLoaded', function() {
+      
+              try {
+                let app = firebase.app();
+                let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
+                console.log(`Firebase SDK loaded with ${features.join(', ')}`)
+              } catch (e) {
+                console.error(e);
+                console.log('Error loading the Firebase SDK, check the console.')
+              }
+            });
+          </script>
+
+
+    <script src="render.js"></script>      
+</body>
+</html>

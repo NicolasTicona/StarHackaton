@@ -1,0 +1,78 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #ECEFF1; 
+    color: rgba(0,0,0,0.87);
+    font-family: Roboto, Helvetica, Arial, sans-serif; 
+}
+
+.auth{
+    width: 60%;
+    max-width: 400px;
+    background: #fff;
+    padding: 20px;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+}
+
+.auth .title{
+    margin-bottom: 20px;
+    
+}
+
+.auth form{
+    width: 100%;
+    padding: 20px;
+    margin: auto;
+}
+
+.auth form input{
+    width: 100%;
+    margin-bottom: 30px;
+    outline: none;
+    border: 2px solid rgb(61, 61, 61);
+    color: rgb(39, 39, 39);
+    padding: 15px 10px;
+    font-size: 20px;
+}
+
+.auth form input[type='submit']{
+    width: 50%;
+    display: block;
+    margin: auto;
+    padding: 20px;
+    background: rgb(16, 63, 117);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.auth form input[type='submit']:hover{
+    background: rgb(21, 86, 160);
+}
+
+.auth .links{
+    width: 100%;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.auth .links a{
+    text-decoration: none;
+    font-size: 15px;
+    color: rgb(21, 86, 160)
+}
+
+.auth .providers #google{
+    padding: 15px 10px;
+    margin: auto;
+    font-weight: bold;
+}

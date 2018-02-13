@@ -1,0 +1,145 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #ECEFF1; 
+    color: rgba(0,0,0,0.87);
+    font-family: Roboto, Helvetica, Arial, sans-serif; 
+}
+
+header{
+    width: 100%;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0px 0px 3px #000;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .brand h1{
+    color: rgb(43, 43, 43)
+}
+
+header .menu a{
+    display: inline-block;
+    padding-top: 5px;
+    margin: 0px 15px;
+    font-size: 16px;
+    text-decoration: none;
+    border-top: 3px solid transparent;
+    color: rgb(75, 75, 75);
+    transition: all .3s ease;
+}
+
+header .menu button{
+    padding: 10px;
+    font-size: 16px;
+    background: rgb(75, 75, 75);
+    color: #fff;
+    border:none;
+    cursor: pointer;
+}
+
+header .menu #google{
+    font-weight: bold;
+    background: rgb(16, 182, 91);
+    
+}
+
+
+/* ======================================= */
+
+.sesion{
+    width: 100%;
+    padding:  20px 0;
+    text-align: center;
+}
+
+.sesion button{
+    border: none;
+    padding: 15px;
+    background: #fff;
+    color: rgb(31, 31, 31);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+main{ 
+    width: 100%;
+    margin-top: 80px;
+}
+
+main .container{
+    width: 90%;
+    max-width: 1200px;
+    background: #fff;
+    margin: auto;
+    padding: 20px;
+}
+
+main .container .cont-btnCrear{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px;
+}
+
+main .container .cont-btnCrear #crearHackaton{
+    text-decoration: none;
+    padding: 15px 10px;
+    border: none;
+    background: #fff;
+    color: rgb(21, 128, 74);
+    font-size: 25px;
+    border: 2px solid rgb(21, 128, 74);
+    transition: all .3s ease;
+}
+
+main .container .cont-btnCrear #crearHackaton:hover{
+    background: rgb(21, 128, 74); 
+    color: #fff;
+}
+
+main .container .hackatones{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+main .container .hackaton{
+    width: 30%;
+    margin-bottom: 30px;
+    background: rgb(16, 182, 91);
+
+    color: #fff;
+}
+
+    .hackaton .title{
+        font-size: 30px;
+        padding: 15px 10px;
+        border-bottom: 2px solid #fff;
+    }
+
+    .hackaton .description{
+        margin: 30px 0;
+        padding: 15px 10px;
+    }
+
+    .hackaton .entrar{
+        width: 100%;
+        border: none;
+        cursor: pointer;
+        background: rgb(21, 128, 74);
+        color: #fff;
+        padding: 10px 0;
+        font-size: 20px;
+    }
